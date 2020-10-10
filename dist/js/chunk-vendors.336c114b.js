@@ -10827,7 +10827,7 @@ var hasIntersectionObserverSupport = isBrowser && 'IntersectionObserver' in wind
 
 var getEnv = function getEnv(key) {
   var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var env = typeof process !== 'undefined' && process ? Object({"NODE_ENV":"production","VUE_APP_TITLE":"Entity-Builder","VUE_APP_VERSION":"5.2.2","BASE_URL":""}) || false : {};
+  var env = typeof process !== 'undefined' && process ? Object({"NODE_ENV":"production","VUE_APP_TITLE":"Entity-Builder","VUE_APP_VERSION":"5.3.0","BASE_URL":""}) || false : {};
 
   if (!key) {
     /* istanbul ignore next */
@@ -11124,6 +11124,37 @@ module.exports = function settle(resolve, reject, response) {
   }
 };
 
+
+/***/ }),
+
+/***/ "1f05":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _construct; });
+/* harmony import */ var core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("3971");
+/* harmony import */ var core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8872");
+/* harmony import */ var _isNativeReflectConstruct__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("b585");
+
+
+
+function _construct(Parent, args, Class) {
+  if (Object(_isNativeReflectConstruct__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])()) {
+    _construct = Reflect.construct;
+  } else {
+    _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) Object(_setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
 
 /***/ }),
 
@@ -21771,6 +21802,45 @@ module.exports.default = axios;
 
 /***/ }),
 
+/***/ "4548":
+/***/ (function(module, exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__("1e2c");
+var objectKeys = __webpack_require__("cbab");
+var toIndexedObject = __webpack_require__("da10");
+var propertyIsEnumerable = __webpack_require__("ef71").f;
+
+// `Object.{ entries, values }` methods implementation
+var createMethod = function (TO_ENTRIES) {
+  return function (it) {
+    var O = toIndexedObject(it);
+    var keys = objectKeys(O);
+    var length = keys.length;
+    var i = 0;
+    var result = [];
+    var key;
+    while (length > i) {
+      key = keys[i++];
+      if (!DESCRIPTORS || propertyIsEnumerable.call(O, key)) {
+        result.push(TO_ENTRIES ? [key, O[key]] : O[key]);
+      }
+    }
+    return result;
+  };
+};
+
+module.exports = {
+  // `Object.entries` method
+  // https://tc39.github.io/ecma262/#sec-object.entries
+  entries: createMethod(true),
+  // `Object.values` method
+  // https://tc39.github.io/ecma262/#sec-object.values
+  values: createMethod(false)
+};
+
+
+/***/ }),
+
 /***/ "45af":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22603,28 +22673,9 @@ var es_reflect_construct = __webpack_require__("3971");
 // EXTERNAL MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/getPrototypeOf.js
 var getPrototypeOf = __webpack_require__("6383");
 
-// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__("e18c");
+// EXTERNAL MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/isNativeReflectConstruct.js
+var isNativeReflectConstruct = __webpack_require__("b585");
 
-// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.regexp.to-string.js
-var es_regexp_to_string = __webpack_require__("1c2e");
-
-// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/isNativeReflectConstruct.js
-
-
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
 // EXTERNAL MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/typeof.js
 var esm_typeof = __webpack_require__("e769");
 
@@ -22652,7 +22703,7 @@ function _possibleConstructorReturn(self, call) {
 
 
 function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  var hasNativeReflectConstruct = Object(isNativeReflectConstruct["a" /* default */])();
   return function _createSuperInternal() {
     var Super = Object(getPrototypeOf["a" /* default */])(Derived),
         result;
@@ -62378,6 +62429,63 @@ module.exports = /(iphone|ipod|ipad).*applewebkit/i.test(userAgent);
 
 /***/ }),
 
+/***/ "77ad":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("1c8b");
+var isObject = __webpack_require__("a719");
+var isArray = __webpack_require__("74e7");
+var toAbsoluteIndex = __webpack_require__("e1d6");
+var toLength = __webpack_require__("d88d");
+var toIndexedObject = __webpack_require__("da10");
+var createProperty = __webpack_require__("1bbd");
+var wellKnownSymbol = __webpack_require__("90fb");
+var arrayMethodHasSpeciesSupport = __webpack_require__("1ea7");
+var arrayMethodUsesToLength = __webpack_require__("ff9c");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+var USES_TO_LENGTH = arrayMethodUsesToLength('slice', { ACCESSORS: true, 0: 0, 1: 2 });
+
+var SPECIES = wellKnownSymbol('species');
+var nativeSlice = [].slice;
+var max = Math.max;
+
+// `Array.prototype.slice` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.slice
+// fallback for not array-like ES3 strings and DOM objects
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
+  slice: function slice(start, end) {
+    var O = toIndexedObject(this);
+    var length = toLength(O.length);
+    var k = toAbsoluteIndex(start, length);
+    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+    var Constructor, result, n;
+    if (isArray(O)) {
+      Constructor = O.constructor;
+      // cross-realm fallback
+      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
+        Constructor = undefined;
+      } else if (isObject(Constructor)) {
+        Constructor = Constructor[SPECIES];
+        if (Constructor === null) Constructor = undefined;
+      }
+      if (Constructor === Array || Constructor === undefined) {
+        return nativeSlice.call(O, k, fin);
+      }
+    }
+    result = new (Constructor === undefined ? Array : Constructor)(max(fin - k, 0));
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+    result.length = n;
+    return result;
+  }
+});
+
+
+/***/ }),
+
 /***/ "78da":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63400,6 +63508,22 @@ module.exports = function (it) {
   } return it;
 };
 
+
+/***/ }),
+
+/***/ "8872":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _setPrototypeOf; });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
 
 /***/ }),
 
@@ -68537,6 +68661,35 @@ $({ target: 'Array', proto: true, forced: FORCED }, {
 
 /***/ }),
 
+/***/ "b585":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _isNativeReflectConstruct; });
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("e18c");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("3971");
+/* harmony import */ var core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_reflect_construct__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_regexp_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("1c2e");
+/* harmony import */ var core_js_modules_es_regexp_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_to_string__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/***/ }),
+
 /***/ "b60f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70259,6 +70412,101 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
+/***/ "c52d":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _toConsumableArray; });
+
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/arrayLikeToArray.js
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/arrayWithoutHoles.js
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.symbol.js
+var es_symbol = __webpack_require__("f3dd");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.symbol.description.js
+var es_symbol_description = __webpack_require__("0a51");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.symbol.iterator.js
+var es_symbol_iterator = __webpack_require__("9b11");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.array.from.js
+var es_array_from = __webpack_require__("98e0");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.object.to-string.js
+var es_object_to_string = __webpack_require__("e18c");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.string.iterator.js
+var es_string_iterator = __webpack_require__("96db");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/web.dom-collections.iterator.js
+var web_dom_collections_iterator = __webpack_require__("af86");
+
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/iterableToArray.js
+
+
+
+
+
+
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.array.slice.js
+var es_array_slice = __webpack_require__("77ad");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__("053b");
+
+// EXTERNAL MODULE: ./node_modules/_core-js@3.6.5@core-js/modules/es.regexp.to-string.js
+var es_regexp_to_string = __webpack_require__("1c2e");
+
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+
+
+
+
+
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/nonIterableSpread.js
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/toConsumableArray.js
+
+
+
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+/***/ }),
+
 /***/ "c54b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70641,6 +70889,23 @@ var cloneDeep = function cloneDeep(obj) {
   return defaultValue;
 };
 /* harmony default export */ __webpack_exports__["a"] = (cloneDeep);
+
+/***/ }),
+
+/***/ "d575":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("1c8b");
+var $values = __webpack_require__("4548").values;
+
+// `Object.values` method
+// https://tc39.github.io/ecma262/#sec-object.values
+$({ target: 'Object', stat: true }, {
+  values: function values(O) {
+    return $values(O);
+  }
+});
+
 
 /***/ }),
 
@@ -71471,20 +71736,8 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _inherits; });
-
-// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/setPrototypeOf.js
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-// CONCATENATED MODULE: ./node_modules/_@babel_runtime@7.10.2@@babel/runtime/helpers/esm/inherits.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _inherits; });
+/* harmony import */ var _setPrototypeOf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("8872");
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -71498,7 +71751,7 @@ function _inherits(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf(subClass, superClass);
+  if (superClass) Object(_setPrototypeOf__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(subClass, superClass);
 }
 
 /***/ }),
@@ -71706,36 +71959,6 @@ module.exports = function (object, names) {
   }
   return result;
 };
-
-
-/***/ }),
-
-/***/ "ecb4":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__("1c8b");
-var $indexOf = __webpack_require__("45af").indexOf;
-var arrayMethodIsStrict = __webpack_require__("d7e1");
-var arrayMethodUsesToLength = __webpack_require__("ff9c");
-
-var nativeIndexOf = [].indexOf;
-
-var NEGATIVE_ZERO = !!nativeIndexOf && 1 / [1].indexOf(1, -0) < 0;
-var STRICT_METHOD = arrayMethodIsStrict('indexOf');
-var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
-
-// `Array.prototype.indexOf` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.indexof
-$({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD || !USES_TO_LENGTH }, {
-  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
-    return NEGATIVE_ZERO
-      // convert -0 to +0
-      ? nativeIndexOf.apply(this, arguments) || 0
-      : $indexOf(this, searchElement, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
 
 
 /***/ }),
@@ -93484,6 +93707,27 @@ $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
 
 /***/ }),
 
+/***/ "fe8a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("1c8b");
+var toObject = __webpack_require__("3553");
+var nativeKeys = __webpack_require__("cbab");
+var fails = __webpack_require__("efe2");
+
+var FAILS_ON_PRIMITIVES = fails(function () { nativeKeys(1); });
+
+// `Object.keys` method
+// https://tc39.github.io/ecma262/#sec-object.keys
+$({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
+  keys: function keys(it) {
+    return nativeKeys(toObject(it));
+  }
+});
+
+
+/***/ }),
+
 /***/ "ff9c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -93519,4 +93763,4 @@ module.exports = function (METHOD_NAME, options) {
 /***/ })
 
 }]);
-//# sourceMappingURL=chunk-vendors.a15ba715.js.map
+//# sourceMappingURL=chunk-vendors.336c114b.js.map
